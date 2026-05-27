@@ -1,0 +1,10 @@
+Step,Description
+1,Login và nhận accessToken + roles/permissions
+2,Lưu token và thông tin user vào localStorage hoặc state
+3,Gửi token trong header Authorization khi gọi API
+4,Handle lỗi 401 (unauthorized) và 403 (forbidden)
+5,Hiển thị hoặc ẩn UI dựa trên permissions
+6,Sử dụng custom hook hoặc helper để kiểm tra quyền
+7,Sử dụng ProtectedRoute để bảo vệ route
+8,BE xác thực token và check RBAC trước khi trả response
+9,FE render dữ liệu hoặc hiển thị lỗi tùy theo response
