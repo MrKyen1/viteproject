@@ -1,39 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import MyComponent from './components/learn/MyComponent'
-import {SecondComponent, ThirdComponent} from './components/learn/SecondComponent'
-function App() {
-  const [count, setCount] = useState(0)
+
+
+import { useState } from "react";
+import Header from "./components/layout/header";
+import Footer from "./components/layout/footer";
+import { Outlet } from "react-router-dom";
+const App = () => {
+  const [todoList,setTodoList]=useState([
+    // {id:1,name:"Learning React"},
+    // {id:2,name:"Watching Youtube"}
+  ])
+
+  const addNewTodo = (name) =>{
+    const newTodo = {
+      id:randomInFromInterval(1,1000000),
+      name:name
+    }
+      setTodoList([...todoList,newTodo])
+  }
+
+  const randomInFromInterval = (min,max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+   const deleteTodo = (id) => {
+        const newTodo = todoList.filter(item => item.id !== id)
+        setTodoList(newTodo)
+    }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Hello world Ki3n</h1>
-      <MyComponent/>
-      <SecondComponent/>
-      <ThirdComponent/>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <Header/>
+   
+    <Outlet/>
+    <Footer/>
     </>
+
   )
 }
 
-export default App
+export default App;
